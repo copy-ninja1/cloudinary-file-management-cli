@@ -1,0 +1,24 @@
+{
+  "name": "cloudinary_uploader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -b",
+    "start": "node dist/index.js",
+    "dev": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./build/index.js --enable-source-maps --trace-warnings",
+    "watch": "tsc-watch --compiler typescript/bin/tsc --onSuccess \"echo All good\"",
+    "start:dev": "npm run build && npm run watch"
+  },
+  "dependencies": {
+    "chokidar": "^3.6.0",
+    "cloudinary": "^2.2.0",
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.11",
+    "ts-node": "^10.9.2",
+    "tsc-watch": "^6.2.0",
+    "typescript": "^5.4.5"
+  }
+}
