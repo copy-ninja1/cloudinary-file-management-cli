@@ -1,14 +1,12 @@
-// import necessary libraries and modules
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
 import * as path from 'path';
 import * as fs from 'fs/promises';
 import { program } from 'commander';
 import cloudConfig from './config/cloudinary';
 
-// Configure Cloudinary with your credentials
 cloudinary.config(cloudConfig);
 
-// Function to check if file exists on Cloudinary
+// check if file exists on Cloudinary
 async function checkFileExists(publicId: string): Promise<boolean> {
   try {
     const result = await cloudinary.api.resource(publicId);
@@ -22,7 +20,7 @@ async function checkFileExists(publicId: string): Promise<boolean> {
   }
 }
 
-// Function to upload a file to Cloudinary
+// upload a file to Cloudinary
 async function uploadFile(filePath: string, folderPath?: string): Promise<void> {
   const fileName = path.basename(filePath);
   const publicId = folderPath ? `${fileName}` : fileName;
@@ -43,7 +41,7 @@ async function uploadFile(filePath: string, folderPath?: string): Promise<void> 
   }
 }
 
-// Function to upload all files in a directory, including subdirectories
+// upload all files in a directory, including subdirectories
 async function uploadDirectory(dirPath: string, parentFolder?: string): Promise<void> {
   try {
     const files = await fs.readdir(dirPath);
@@ -62,7 +60,7 @@ async function uploadDirectory(dirPath: string, parentFolder?: string): Promise<
   }
 }
 
-// // Function to delete a file
+//  delete a file
 // async function deleteFile(filePath: string): Promise<void> {
 //   try {
 //     await fs.unlink(filePath);
@@ -72,7 +70,7 @@ async function uploadDirectory(dirPath: string, parentFolder?: string): Promise<
 //   }
 // }
 
-// // Function to delete a folder recursively
+//  delete a folder recursively
 // async function deleteFolder(folderPath: string): Promise<void> {
 //   try {
 //     const files = await fs.readdir(folderPath);
@@ -92,7 +90,7 @@ async function uploadDirectory(dirPath: string, parentFolder?: string): Promise<
 //   }
 // }
 
-// Define command-line arguments using `commander`
+//  cli arguments using commander
 program
   .command('upload <directory>')
   .description('Upload a directory to Cloudinary')
